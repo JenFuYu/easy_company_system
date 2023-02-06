@@ -1,0 +1,749 @@
+public class login {
+	
+	private String account;
+	private String password;
+	private static boolean permiss;
+	
+	public login(String account, String password) {
+		super();
+		this.account = account;
+		this.password = password;
+	}
+	
+	public login() {
+		
+	}
+
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public static boolean isPermiss() {
+		return permiss;
+	}
+
+	public static void setPermiss(boolean permiss) {
+		login.permiss = permiss;
+	}
+	
+
+	String prompt_show(){
+		return "測試用會員資料:"
+				+"\n帳號 : Admin"
+				+"\n密碼 : 0000";
+	}
+
+}
+
+
+
+
+public class login_UI extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField account;
+	private JTextField password;
+	static login_UI frame;
+
+	JLabel logo=new JLabel(new ImageIcon("img/logo.png"));     		//讀取圖片
+	logo.setBounds(0, 0, 444, 50);
+        logo_area.add(logo);
+        
+        JTextArea prompt_Area = new JTextArea();				//提示區
+        prompt_Area.setBounds(45, 238, 347, 94);
+        panel.add(prompt_Area);
+        //prompt_Area.setText(login.prompt_show());
+        
+        login l = new login();
+        prompt_Area.setText(l.prompt_show());
+        
+        login__Button.addMouseListener(new MouseAdapter() {			//登入動作
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		String acc = account.getText();
+        		String pas = password.getText();
+        		
+        		if(acc.equals("Admin") && pas.equals("0000")) {
+        			login.setPermiss(true);
+        			order_UI.frame2 = new order_UI(login.isPermiss());
+        			frame.setVisible(false);
+        			order_UI.frame2.setVisible(true);
+        			//prompt_Area.setText(Boolean.toString(login.isPermiss()));
+        		}
+        		else {
+        			prompt_Area.setText("輸入錯誤，請重新輸入！"
+        					+"\n"+l.prompt_show()
+        					+"\n"+Boolean.toString(login.isPermiss())
+        					);
+        		}
+        	}
+        });
+        
+        visitor_Button.addMouseListener(new MouseAdapter() {			//訪客動作
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		login.setPermiss(false);
+        		order_UI.frame2 = new order_UI(login.isPermiss());
+        		frame.setVisible(false);
+        		order_UI.frame2.setVisible(true);
+        		//prompt_Area.setText(Boolean.toString(login.isPermiss()));
+        	}
+        });
+	}
+}
+
+
+
+
+
+
+
+package order1;
+
+public class order {
+	
+	private static int cpu_ADM3_num;
+	private static int cpu_ADM5_num;
+	private static int cpu_INi9_num;
+	private static int ram_k_num;
+	private static int ram_w_num;
+	private static int ram_m_num;
+	private static int vga_w_num;
+	private static int vga_h_num;
+	private static int vga_g_num;
+	private static int mb_w_num;
+	private static int mb_h_num;
+	private static int mb_g_num;
+	private static int sum_num;
+	private static int per_sumnum;
+	private static int pay_in;
+	
+	
+	public order(int cpu_ADM3_num, int cpu_ADM5_num, int cpu_INi9_num, int ram_k_num, int ram_w_num, int ram_m_num,
+			int vga_w_num, int vga_h_num, int vga_g_num, int mb_w_num, int mb_h_num, int mb_g_num) {
+		super();
+		
+			this.cpu_ADM3_num = cpu_ADM3_num;
+			this.cpu_ADM5_num = cpu_ADM5_num;
+			this.cpu_INi9_num = cpu_INi9_num;
+			this.ram_k_num = ram_k_num;
+			this.ram_w_num = ram_w_num;
+			this.ram_m_num = ram_m_num;
+			this.vga_w_num = vga_w_num;
+			this.vga_h_num = vga_h_num;
+			this.vga_g_num = vga_g_num;
+			this.mb_w_num = mb_w_num;
+			this.mb_h_num = mb_h_num;
+			this.mb_g_num = mb_g_num;
+			
+		sum_num = cpu_ADM3_num*2890+cpu_ADM5_num*3900+cpu_INi9_num*17700+ram_k_num*3200+ram_w_num*5399+ram_m_num*3599+vga_w_num*4990+vga_h_num*12990+vga_g_num*59990+mb_w_num*7990+mb_h_num*20990+mb_g_num*5990;
+		per_sumnum = (int)(sum_num*0.9);
+	}
+	
+	public order() {
+		
+	}
+
+
+	public static int getCpu_ADM3_num() {
+		return cpu_ADM3_num;
+	}
+
+
+	public static void setCpu_ADM3_num(int cpu_ADM3_num) {
+		order.cpu_ADM3_num = cpu_ADM3_num;
+	}
+
+
+	public int getCpu_ADM5_num() {
+		return cpu_ADM5_num;
+	}
+
+
+	public static void setCpu_ADM5_num(int cpu_ADM5_num) {
+		order.cpu_ADM5_num = cpu_ADM5_num;
+	}
+
+
+	public int getCpu_INi9_num() {
+		return cpu_INi9_num;
+	}
+
+
+	public static void setCpu_INi9_num(int cpu_INi9_num) {
+		order.cpu_INi9_num = cpu_INi9_num;
+	}
+
+
+	public int getRam_k_num() {
+		return ram_k_num;
+	}
+
+
+	public static void setRam_k_num(int ram_k_num) {
+		order.ram_k_num = ram_k_num;
+	}
+
+
+	public int getRam_w_num() {
+		return ram_w_num;
+	}
+
+
+	public static void setRam_w_num(int ram_w_num) {
+		order.ram_w_num = ram_w_num;
+	}
+
+
+	public int getRam_m_num() {
+		return ram_m_num;
+	}
+
+
+	public static void setRam_m_num(int ram_m_num) {
+		order.ram_m_num = ram_m_num;
+	}
+
+
+	public int getVga_w_num() {
+		return vga_w_num;
+	}
+
+
+	public static void setVga_w_num(int vga_w_num) {
+		order.vga_w_num = vga_w_num;
+	}
+
+
+	public int getVga_h_num() {
+		return vga_h_num;
+	}
+
+
+	public static void setVga_h_num(int vga_h_num) {
+		order.vga_h_num = vga_h_num;
+	}
+
+
+	public int getVga_g_num() {
+		return vga_g_num;
+	}
+
+
+	public static void setVga_g_num(int vga_g_num) {
+		order.vga_g_num = vga_g_num;
+	}
+
+
+	public int getMb_w_num() {
+		return mb_w_num;
+	}
+
+
+	public static void setMb_w_num(int mb_w_num) {
+		order.mb_w_num = mb_w_num;
+	}
+
+
+	public int getMb_h_num() {
+		return mb_h_num;
+	}
+
+
+	public static void setMb_h_num(int mb_h_num) {
+		order.mb_h_num = mb_h_num;
+	}
+
+
+	public int getMb_g_num() {
+		return mb_g_num;
+	}
+
+
+	public static void setMb_g_num(int mb_g_num) {
+		order.mb_g_num = mb_g_num;
+	}
+
+	public int getSum_num() {
+		return sum_num;
+	}
+	
+	public static void setSum_num(int sum_num) {
+		order.sum_num = sum_num;
+	}
+
+	public static void setPer_sumnum(int per_sumnum) {
+		order.per_sumnum = per_sumnum;
+	}
+
+	public int getPay_in() {
+		return pay_in;
+	}
+
+	public static void setPay_in(int pay_in) {
+		order.pay_in = pay_in;
+	}
+
+	static String show_sum() {						//顯示總價格
+		sum_num = cpu_ADM3_num*2890+cpu_ADM5_num*3900+cpu_INi9_num*17700+ram_k_num*3200+ram_w_num*5399+ram_m_num*3599+vga_w_num*4990+vga_h_num*12990+vga_g_num*59990+mb_w_num*7990+mb_h_num*20990+mb_g_num*5990;
+		
+		return "總價為:"+sum_num
+				+"\n";
+	}
+	
+	static String show_persum() {						//顯示會員價格
+		per_sumnum = (int)(sum_num*0.9);
+		return "會員總價為:"+per_sumnum;
+	}
+	
+	static String count_show() {						//顯示結帳明細
+		int count;
+		int thou;
+		int fiv_hun;
+		int hun;
+		int fiv_ten;
+		int ten;
+		int fiv;
+		int yen;
+		
+		
+		if(login.isPermiss() == true) {
+			if(pay_in > per_sumnum) {
+				count = pay_in - per_sumnum;
+				thou = (int)(count/1000);
+				fiv_hun = (int)((count-thou*1000)/500);
+				hun = (int)((count-thou*1000-fiv_hun*500)/100);
+				fiv_ten = (int)((count-thou*1000-fiv_hun*500-hun*100)/50);
+				ten = (int)((count-thou*1000-fiv_hun*500-hun*100-fiv_ten*50)/10);
+				fiv = (int)((count-thou*1000-fiv_hun*500-hun*100-fiv_ten*50-ten*10)/5);
+				yen = count%5;
+				
+				return "找零細目:\t"+ "須找"+ count +"元\n"
+				+"\t千元: "+ thou+"張\n"
+				+"\t五百元:"+ fiv_hun+"張\n"
+				+"\t百元:"+ hun+"張\n"
+				+"\t五十元:"+ fiv_ten+"個\n"
+				+"\t十元:"+ ten+"個\n"
+				+"\t五元:"+ fiv+"個\n"
+				+"\t一元:"+ yen+"個\n";
+			}
+			else {
+				return  "金額不足，請重新輸入！";
+			}
+			
+		}
+		else {
+			if(pay_in > sum_num) {
+				count = pay_in - sum_num;
+				thou = (int)(count/1000);
+				fiv_hun = (int)((count-thou*1000)/500);
+				hun = (int)((count-thou*1000-fiv_hun*500)/100);
+				fiv_ten = (int)((count-thou*1000-fiv_hun*500-hun*100)/50);
+				ten = (int)((count-thou*1000-fiv_hun*500-hun*100-fiv_ten*50)/10);
+				fiv = (int)((count-thou*1000-fiv_hun*500-hun*100-fiv_ten*50-ten*10)/5);
+				yen = count%5;
+				
+				return "找零細目:\t"+ "須找"+ count +"元\n"
+				+"\t千元: "+ thou+"張\n"
+				+"\t五百元:"+ fiv_hun+"張\n"
+				+"\t百元:"+ hun+"張\n"
+				+"\t五十元:"+ fiv_ten+"個\n"
+				+"\t十元:"+ ten+"個\n"
+				+"\t五元:"+ fiv+"個\n"
+				+"\t一元:"+ yen+"個\n";
+			}
+			else {
+				return  "金額不足，請重新輸入！";
+			}
+		}
+				 
+		
+	}
+}
+
+
+
+public class order_UI extends JFrame {
+
+	private JPanel contentPane;
+	
+	private int cpu_ADM3_num;
+	private int cpu_ADM5_num;
+	private int cpu_INi9_num;
+	private int ram_k_num;
+	private int ram_w_num;
+	private int ram_m_num;
+	private int vga_w_num;
+	private int vga_h_num;
+	private int vga_g_num;
+	private int mb_w_num;
+	private int mb_h_num;
+	private int mb_g_num;
+	
+	static order_UI frame2;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					//frame2 = new order_UI();
+					frame2.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public order_UI(boolean permiss) {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(350, 100, 480, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+			
+		
+		
+		JComboBox cpu_comboBox = new JComboBox();
+		cpu_comboBox.addItem("請選擇CPU種類");
+		cpu_comboBox.addItem("ADM R3 4110 [4核/8緒] 3.6G $2890");
+		cpu_comboBox.addItem("ADM R5 4500 [6核/12緒] 4.1G $3900");
+		cpu_comboBox.addItem("Intel i9-12900K [16核/24緒] 5.2G $17700");
+		cpu_comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String cpu_Sel = (String) cpu_comboBox.getSelectedItem(); //取得cpu選項
+				
+                switch (cpu_Sel) {
+                    case "請選擇CPU種類":
+                    	cpu_ADM3_num = 0; 
+                    	cpu_ADM5_num = 0; 
+                    	cpu_INi9_num = 0;
+                        break;
+                    case "ADM R3 4110 [4核/8緒] 3.6G $2890":
+                    	cpu_ADM3_num = 1; 
+                    	cpu_ADM5_num = 0; 
+                    	cpu_INi9_num = 0;
+                        break;
+                    case "ADM R5 4500 [6核/12緒] 4.1G $3900":
+                    	cpu_ADM3_num = 0; 
+                    	cpu_ADM5_num = 1; 
+                    	cpu_INi9_num = 0;
+                        break;
+                    case "Intel i9-12900K [16核/24緒] 5.2G $17700":
+                    	cpu_ADM3_num = 0; 
+                    	cpu_ADM5_num = 0; 
+                    	cpu_INi9_num = 1; 
+                        break;
+                }
+			}
+		});
+		cpu_comboBox.setBounds(24, 62, 415, 80);
+		contentPane.add(cpu_comboBox);
+		
+		JComboBox DRAM_comboBox = new JComboBox();
+		DRAM_comboBox.addItem("請選擇DRAM種類");
+		DRAM_comboBox.addItem("金士頓 單條 16G DDR5-6000 $3200");
+		DRAM_comboBox.addItem("威剛 雙通 32G DDR5-5600 $5399");
+		DRAM_comboBox.addItem("美光 雙通 32G DDR5 4800/CL40 $3599");
+		DRAM_comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String DRAM_Sel = (String) DRAM_comboBox.getSelectedItem(); //取得cpu選項
+				
+                switch (DRAM_Sel) {
+                    case "請選擇DRAM種類":
+                    	ram_k_num = 0; 
+                    	ram_w_num = 0;
+                    	ram_m_num = 0; 
+                        break;
+                    case "金士頓 單條 16G DDR5-6000 $3200":
+                    	ram_k_num = 1; 
+                    	ram_w_num = 0;
+                    	ram_m_num = 0; 
+                        break;
+                    case "威剛 雙通 32G DDR5-5600 $5399":
+                    	ram_k_num = 0; 
+                    	ram_w_num = 1; 
+                    	ram_m_num = 0;
+                        break;
+                    case "美光 雙通 32G DDR5 4800/CL40 $3599":
+                    	ram_k_num = 0; 
+                    	ram_w_num = 0;
+                    	ram_m_num = 1; 
+                        break;
+                }
+			}
+		});
+		DRAM_comboBox.setBounds(24, 152, 415, 80);
+		contentPane.add(DRAM_comboBox);
+		
+		JComboBox VGA_comboBox = new JComboBox();
+		VGA_comboBox.addItem("請選擇VGA種類");
+		VGA_comboBox.addItem("微星 GTX1050Ti 4GT 1455MHz/雙風扇 $4990");
+		VGA_comboBox.addItem("華碩 DUAL-RTX3060TI-O8G 1710MHz/雙風扇 $12990");
+		VGA_comboBox.addItem("技嘉 RTX4090 GAMING OC 24G 2535MHz/金屬背板 $59990");
+		VGA_comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String VGA_Sel = (String) VGA_comboBox.getSelectedItem(); //取得cpu選項
+				
+                switch (VGA_Sel) {
+                    case "請選擇VGA種類":
+                    	vga_w_num = 0; 
+                    	vga_h_num = 0; 
+                    	vga_g_num = 0; 
+                        break;
+                    case "微星 GTX1050Ti 4GT 1455MHz/雙風扇 $4990":
+                    	vga_w_num = 1; 
+                    	vga_h_num = 0; 
+                    	vga_g_num = 0; 
+                        break;
+                    case "華碩 DUAL-RTX3060TI-O8G 1710MHz/雙風扇 $12990":
+                    	vga_w_num = 0; 
+                    	vga_h_num = 1; 
+                    	vga_g_num = 0; 
+                        break;
+                    case "技嘉 RTX4090 GAMING OC 24G 2535MHz/金屬背板 $59990":
+                    	vga_w_num = 0; 
+                    	vga_h_num = 0; 
+                    	vga_g_num = 1; 
+                    	
+                        break;
+                }
+			}
+		});
+		VGA_comboBox.setBounds(24, 242, 415, 80);
+		contentPane.add(VGA_comboBox);
+		
+		JComboBox MB_comboBox = new JComboBox();
+		MB_comboBox.addItem("請選擇MBVGA種類");
+		MB_comboBox.addItem("微星 PRO Z790-A WIFI(ATX/ Intel 2.5Gb) $7990");
+		MB_comboBox.addItem("華碩 WS X299 SEGA/10G (CEB8*D4/雙) $20990");
+		MB_comboBox.addItem("技嘉 B660I AORUS PRO DDR4(Mini-ITX/Intel 2.5G) $5990");
+		MB_comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String MB_Sel = (String) MB_comboBox.getSelectedItem();
+                switch (MB_Sel) {
+                case "請選擇MBVGA種類":
+                	mb_w_num = 0; 
+                	mb_h_num = 0;
+                	mb_g_num = 0; 
+                    break;
+                case "微星 PRO Z790-A WIFI(ATX/ Intel 2.5Gb) $7990":
+                	mb_w_num = 1; 
+                	mb_h_num = 0;
+                	mb_g_num = 0; 
+                    break;
+                case "華碩 WS X299 SEGA/10G (CEB8*D4/雙) $20990":
+                	mb_w_num = 0;
+                	mb_h_num = 1; 
+                	mb_g_num = 0; 
+                    break;
+                case "技嘉 B660I AORUS PRO DDR4(Mini-ITX/Intel 2.5G) $5990":
+                	mb_w_num = 0;
+                	mb_h_num = 0;
+                	mb_g_num = 1; 
+                    break;
+            }
+			}
+		});
+		MB_comboBox.setBounds(24, 332, 415, 80);
+		contentPane.add(MB_comboBox);
+		
+		JButton check_Button = new JButton("結帳");
+		check_Button.setFont(new Font("新細明體", Font.PLAIN, 22));
+		check_Button.setBounds(310, 441, 129, 53);
+		contentPane.add(check_Button);
+		
+		check_Button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				order o1 = new order(cpu_ADM3_num,cpu_ADM5_num,cpu_INi9_num,ram_k_num,ram_w_num,ram_m_num,
+						vga_w_num,vga_h_num,vga_g_num,mb_w_num,mb_h_num,mb_g_num);
+				display_UI.frame3 = new display_UI(permiss);
+				order_UI.frame2.setVisible(false);
+				display_UI.frame3.setVisible(true);
+			}
+		});
+	}
+
+}
+
+public class display_UI extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField pay_in;
+	
+	static display_UI frame3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame3.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public display_UI(boolean permiss) {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(350, 100, 480, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		//order o1 = new order();
+		
+		JButton return_Button = new JButton("回選購頁面");
+		return_Button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				order_UI.frame2.setVisible(true);
+				display_UI.frame3.setVisible(false);
+			}
+		});
+		return_Button.setFont(new Font("新細明體", Font.PLAIN, 18));
+		return_Button.setBounds(10, 10, 140, 30);
+		contentPane.add(return_Button);
+		
+		JTextArea shopping_cart_Area = new JTextArea();
+		shopping_cart_Area.setBounds(10, 48, 444, 200);
+		contentPane.add(shopping_cart_Area);
+		if(permiss) {
+			shopping_cart_Area.setText(order.show_persum()
+										);
+		}
+		else {
+			shopping_cart_Area.setText(order.show_sum());
+		}
+		/*shopping_cart_Area.setText(Boolean.toString(permiss)
+									+"ADM3_num:"+order.getCpu_ADM3_num()*2890
+				
+				);*/
+		
+		
+		JButton clearn_Button = new JButton("清空購物車");
+		clearn_Button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				order.setCpu_ADM3_num(0);
+				order.setCpu_ADM5_num(0);
+				order.setCpu_INi9_num(0);
+				order.setRam_k_num(0);
+				order.setRam_w_num(0);
+				order.setRam_m_num(0);
+				order.setVga_w_num(0);
+				order.setVga_h_num(0);
+				order.setVga_g_num(0);
+				order.setMb_w_num(0);
+				order.setMb_h_num(0);
+				order.setMb_g_num(0);
+				order.setSum_num(0);
+				order.setPer_sumnum(0);
+				
+				if(permiss) {
+					shopping_cart_Area.setText(order.show_persum()
+												);
+				}
+				else {
+					shopping_cart_Area.setText(order.show_sum());
+				}
+			}
+		});
+		clearn_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		clearn_Button.setFont(new Font("新細明體", Font.PLAIN, 18));
+		clearn_Button.setBounds(314, 10, 140, 30);
+		contentPane.add(clearn_Button);
+		
+		
+		JLabel lblNewLabel = new JLabel("支付金額 : ");
+		lblNewLabel.setFont(new Font("新細明體", Font.PLAIN, 18));
+		lblNewLabel.setBounds(10, 258, 103, 30);
+		contentPane.add(lblNewLabel);
+		
+		pay_in = new JTextField();
+		pay_in.setBounds(100, 258, 166, 30);
+		contentPane.add(pay_in);
+		pay_in.setColumns(10);
+		
+		JTextArea make_change_Area = new JTextArea();
+		make_change_Area.setBounds(10, 298, 444, 213);
+		contentPane.add(make_change_Area);
+		
+		JButton count_Button = new JButton("結算");
+		count_Button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int money = Integer.parseInt(pay_in.getText());
+				order.setPay_in(money);
+				make_change_Area.setText(order.count_show());
+			}
+		});
+		count_Button.setFont(new Font("新細明體", Font.PLAIN, 18));
+		count_Button.setBounds(314, 258, 140, 30);
+		contentPane.add(count_Button);
+		
+
+		JButton print_Button = new JButton("列印帳單");
+		print_Button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Boolean make_change = make_change_Area.print();
+					
+				}catch(PrinterException ex){
+					
+				}
+				
+			}
+		});
+		print_Button.setFont(new Font("新細明體", Font.PLAIN, 18));
+		print_Button.setBounds(10, 521, 140, 30);
+		contentPane.add(print_Button);
+		
+		JButton exit_Button = new JButton("離開");
+		exit_Button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		exit_Button.setFont(new Font("新細明體", Font.PLAIN, 18));
+		exit_Button.setBounds(314, 521, 140, 30);
+		contentPane.add(exit_Button);
+	}
+}
+
